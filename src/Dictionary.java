@@ -9,8 +9,8 @@ public class Dictionary {
 
     public Dictionary(String filepath, int shortest, int longest) {
 
-
         try {
+
             File f = new File(filepath);
             Scanner data = new Scanner(f);
 
@@ -52,7 +52,7 @@ public class Dictionary {
         int longest = this.words.get(this.words.size() -1).length();
 
         if (this.words.contains(word) && word.length() >= shortest && word.length() <= longest) { //contains might count subwords
-            this.words.add(word);
+            this.words.add(word.toUpperCase());
             Collections.sort(this.words);
             return true;
         }
