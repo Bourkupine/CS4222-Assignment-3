@@ -48,12 +48,20 @@ public class Dictionary {
 
     public boolean add(String word) {
 
+        int shortest = this.words.get(0).length();
+        int longest = this.words.get(this.words.size() -1).length();
+
+        if (this.words.contains(word) && word.length() >= shortest && word.length() <= longest) { //contains might count subwords
+            this.words.add(word);
+            Collections.sort(this.words);
+            return true;
+        }
+        return false;
+
         //scan to see if it exists
         //if not, add it, resort it, return true
         //if it does, return false
         //make sure its between shortest and longest
-
-        return true;
     }
 
 
