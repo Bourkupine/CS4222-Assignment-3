@@ -17,10 +17,10 @@ public class Dictionary {
             while (data.hasNextLine()) {
                 String[] words = data.nextLine().split(",");
 
-                assert this.words != null;
-                for (String word : this.words) {
+                assert words != null;
+                for (String word : words) {
                     String currentWord = word.toUpperCase();
-                    currentWord.replace(" ", "");
+                    currentWord.trim();
                     if (currentWord.length() >= shortest && currentWord.length() <= longest) {
                         if (!this.words.contains(currentWord)) { //TODO check to see if it will check subwords
                             this.words.add(currentWord);
@@ -50,20 +50,21 @@ public class Dictionary {
 
         int shortest = this.words.get(0).length();
         int longest = this.words.get(this.words.size() -1).length();
+        String trimmedWord = word.trim();
 
-        if (this.words.contains(word) && word.length() >= shortest && word.length() <= longest) { //contains might count subwords
-            this.words.add(word.toUpperCase());
+        if (this.words.contains(trimmedWord) && trimmedWord.length() >= shortest && trimmedWord.length() <= longest) { //contains might count subwords
+            this.words.add(trimmedWord.toUpperCase());
             Collections.sort(this.words);
             return true;
         }
         return false;
+
 
         //scan to see if it exists
         //if not, add it, resort it, return true
         //if it does, return false
         //make sure its between shortest and longest
     }
-
 
     public String nextWord() {
         if (this.words.size() == 0) {return "";}
@@ -72,7 +73,8 @@ public class Dictionary {
 
 
     public boolean inDictionary(String word) {
-        return this.words.contains(word.toUpperCase());
+        String trimmedWord = word.trim();
+        return this.words.contains(trimmedWord.toUpperCase());
     }
 
 }
