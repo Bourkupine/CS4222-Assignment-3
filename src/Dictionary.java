@@ -6,8 +6,16 @@ public class Dictionary {
 
     private ArrayList<String> words ;
 
+    private final int shortest;
+    private final int longest;
+
 
     public Dictionary(String filepath, int shortest, int longest) {
+
+        this.words = new ArrayList<>();
+
+        this.shortest = shortest;
+        this.longest = longest;
 
         try {
 
@@ -15,12 +23,10 @@ public class Dictionary {
             Scanner data = new Scanner(f);
 
             while (data.hasNextLine()) {
-                String[] words = data.nextLine().split(",");
+                String[] wordArray = data.nextLine().split(",");
 
-                assert words != null;
-                for (String word : words) {
-                    String currentWord = word.toUpperCase();
-                    currentWord.trim();
+                for (String word : wordArray) {
+                    String currentWord = word.toUpperCase().trim();
                     if (currentWord.length() >= shortest && currentWord.length() <= longest) {
                         if (!this.words.contains(currentWord)) { //TODO check to see if it will check subwords
                             this.words.add(currentWord);
@@ -48,11 +54,9 @@ public class Dictionary {
 
     public boolean add(String word) {
 
-        int shortest = this.words.get(0).length();
-        int longest = this.words.get(this.words.size() -1).length();
         String trimmedWord = word.trim();
 
-        if (this.words.contains(trimmedWord) && trimmedWord.length() >= shortest && trimmedWord.length() <= longest) { //contains might count subwords
+        if (this.words.contains(trimmedWord) && trimmedWord.length() >= this.shortest && trimmedWord.length() <= this.longest) { //contains might count subwords
             this.words.add(trimmedWord.toUpperCase());
             Collections.sort(this.words);
             return true;
