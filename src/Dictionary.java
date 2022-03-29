@@ -39,7 +39,7 @@ public class Dictionary {
             assert this.words != null; //might not be required, wait for dermots response
             Collections.sort(this.words);
         } catch (IOException e) {
-            System.out.println("Houston we have a problem");
+            System.out.println("Houston we have a problem" + e);
         }
 
 
@@ -79,6 +79,15 @@ public class Dictionary {
     public boolean inDictionary(String word) {
         String trimmedWord = word.trim();
         return this.words.contains(trimmedWord.toUpperCase());
+    }
+
+    public String toString() { //custom toString() method
+
+        StringBuilder theString = new StringBuilder();
+
+        this.words.forEach(word -> theString.append(word).append(" "));
+
+        return theString.toString();
     }
 
 }
