@@ -56,7 +56,7 @@ public class Dictionary {
 
         String trimmedWord = word.trim();
 
-        if (this.words.contains(trimmedWord) && trimmedWord.length() >= this.shortest && trimmedWord.length() <= this.longest) { //contains might count subwords
+        if (!this.words.contains(trimmedWord) && trimmedWord.length() >= this.shortest && trimmedWord.length() <= this.longest) { //contains might count subwords
             this.words.add(trimmedWord.toUpperCase());
             Collections.sort(this.words);
             return true;
