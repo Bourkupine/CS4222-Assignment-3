@@ -18,35 +18,26 @@ public class Dictionary {
         this.longest = longest;
 
         try {
-
             File f = new File(filepath);
             Scanner data = new Scanner(f);
 
             while (data.hasNextLine()) {
-                String[] wordArray = data.nextLine().split(",");
+                String[] wordArray = data.nextLine().split(","); //create an array of all the words on the line
 
-                for (String word : wordArray) {
+                for (String word : wordArray) { //for each word in the array, we trim it and put to uppercase
                     String currentWord = word.toUpperCase().trim();
+                    //checks if the word is between the shortest and longest variables
                     if (currentWord.length() >= shortest && currentWord.length() <= longest) {
-                        if (!this.words.contains(currentWord)) { //TODO check to see if it will check subwords
-                            this.words.add(currentWord);
+                        if (!this.words.contains(currentWord)) {
+                            this.words.add(currentWord); //adds the word if it is not already contained in the list
                         }
                     }
                 }
             }
-            assert this.words != null; //might not be required
-            Collections.sort(this.words);
+            Collections.sort(this.words); //sorts the list
         } catch (IOException e) {
             System.out.println("Houston we have a problem" + e);
         }
-
-
-        // have something like [if (word >= shortest && word <= longest) add to list]
-        // !make uppercase! - just use .toUpperCase() when adding to list
-        // !trim words! - should probably be first
-        // !remove duplicates!
-        // !store in alphabetical order! - Collections.sort(this.words); (something like this)
-
     }
 
 
@@ -64,13 +55,13 @@ public class Dictionary {
     }
 
     public String nextWord() {
-        if (this.words.size() == 0) {return "";}
-        return this.words.get((int)(Math.random() * this.words.size()));
+        if (this.words.size() == 0) {return "";} //checks if word list is empty
+        return this.words.get((int)(Math.random() * this.words.size())); //generates a random number between 0 and length of array nad returns the word at that index
     }
 
 
     public boolean inDictionary(String word) {
-        String trimmedWord = word.trim();
+        String trimmedWord = word.trim(); //trim word
         return this.words.contains(trimmedWord.toUpperCase());
     }
 
