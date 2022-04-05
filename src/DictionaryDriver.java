@@ -1,3 +1,7 @@
+//Name: Euan Bourke
+//ID: 21332142
+
+//CS4222 Assignment 3
 
 public class DictionaryDriver {
 

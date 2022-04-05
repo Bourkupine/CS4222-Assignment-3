@@ -1,3 +1,8 @@
+//Name: Euan Bourke
+//ID: 21332142
+
+//CS4222 Assignment 3
+
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
