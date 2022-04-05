@@ -6,7 +6,7 @@ public class Dictionary {
 
     private ArrayList<String> words ;
 
-    private final int shortest;
+    private final int shortest; //creating these so we can use it later on
     private final int longest;
 
 
@@ -32,11 +32,9 @@ public class Dictionary {
                             this.words.add(currentWord);
                         }
                     }
-
                 }
-
             }
-            assert this.words != null; //might not be required, wait for dermots response
+            assert this.words != null; //might not be required
             Collections.sort(this.words);
         } catch (IOException e) {
             System.out.println("Houston we have a problem" + e);
@@ -54,20 +52,15 @@ public class Dictionary {
 
     public boolean add(String word) {
 
-        String trimmedWord = word.trim();
+        String trimmedWord = word.trim().toUpperCase(); //trim the word and put to upper case
 
+        //we will check if it is not contained in the array list and then if it is between the shortest and longest varialbes
         if (!this.words.contains(trimmedWord) && trimmedWord.length() >= this.shortest && trimmedWord.length() <= this.longest) { //contains might count subwords
-            this.words.add(trimmedWord.toUpperCase());
-            Collections.sort(this.words);
-            return true;
+            this.words.add(trimmedWord); //add the word
+            Collections.sort(this.words); //sort the list
+            return true; //finally return true
         }
-        return false;
-
-
-        //scan to see if it exists
-        //if not, add it, resort it, return true
-        //if it does, return false
-        //make sure its between shortest and longest
+        return false; //otherwise return false
     }
 
     public String nextWord() {
@@ -83,11 +76,13 @@ public class Dictionary {
 
     public String toString() { //custom toString() method
 
+        //to do this, we create a StringBuilder and for each word we will add it to the StringBuilder
+        //essentially we are creating a super long string of the words
         StringBuilder theString = new StringBuilder();
-
         this.words.forEach(word -> theString.append(word).append(" "));
-
         return theString.toString();
+
+        //using this method as I wanted to learn StringBuilders and forEach loops
     }
 
 }
